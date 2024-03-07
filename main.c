@@ -16,7 +16,7 @@ int main(void)
 
         BeginDrawing();
 
-            ClearBackground(LIGHTGRAY);
+            ClearBackground(WHITE);
 
         EndDrawing();
 
