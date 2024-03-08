@@ -5,33 +5,31 @@
 #define ScreenWidth 1800
 
 
-    Texture2D Mike_run, Mike_attack;
+    Texture2D Mike_run, Mike_attack, Mike_jump;
     Vector2 position;
         
-    Rectangle frameRec, frameRec2, frameRec3;
+    Rectangle frameRec, frameRec2, frameRec3, frameRec4;
     int currentFrame = 0, framesCounter = 0, flag = 0, framesSpeed = 6, parado = 1;
 
 void init_Mike ()
 {
-    Mike_run = LoadTexture("assets/Mike/Run.png");
-    Mike_attack = LoadTexture("assets/Mike/Attack 1.png");
-    position = (Vector2) { 0, 0 };
-        
-    frameRec = (Rectangle) { 0.0f, 0.0f, Mike_run.width/7, Mike_run.height};
-    frameRec2 = (Rectangle) { 0.0f, 0.0f, Mike_run.width/7, Mike_run.height};
+    Mike_run = LoadTexture ("assets/Mike/Run.png");
+    Mike_attack = LoadTexture ("assets/Mike/Attack 1.png");
+    Mike_jump = LoadTexture ("assets/Mike/Jump.png");
+    position = (Vector2) {-900, -500};
+    frameRec = (Rectangle) {0.0f, 0.0f, Mike_run.width/7, Mike_run.height};
+    frameRec2 = (Rectangle) {0.0f, 0.0f, Mike_run.width/7, Mike_run.height};
     frameRec3 = (Rectangle) {0.0f, 0.0f, Mike_attack.width/5, Mike_attack.height};
-    currentFrame = 0;
+    frameRec4 = (Rectangle) {0.0f, 0.0f, Mike_jump.width/6, Mike_jump.height};
 
+    currentFrame = 0;
     framesCounter = 0;
     flag = 0;
-
-    framesSpeed = 2;            // Number of spritesheet frames shown by second
+    framesSpeed = 1;            
 }
 
 void Mike_position ()
 {
-    //framesCounter++;
-
     if (framesCounter >= (60/framesSpeed))
     {
         framesCounter = 0;
@@ -56,18 +54,27 @@ void Mike_position ()
     }
     else if (IsKeyDown(KEY_A)) 
     {
-        position.x < 0 ? position.x += 1 : position.x;
-        flag = 1;
-        framesCounter++;
-        parado = 0;
+        if (IsKeyDown(KEY_D)) parado = 1;
+        else 
+        {
+            position.x < 0 ? position.x += 1 : position.x;
+            flag = 1;
+            framesCounter++;
+            parado = 0;
+        }
     }
     else if (IsKeyDown(KEY_D)) 
     {
-        position.x > -1700 ? position.x -= 1 : position.x;
-        flag = 0; 
-        framesCounter++;
-        parado = 0;
+        if (IsKeyDown(KEY_A)) parado = 1;
+        else 
+        {
+            position.x > -1700 ? position.x -= 1 : position.x;
+            flag = 0; 
+            framesCounter++;
+            parado = 0;
+        }
     }
+    else if (IsKeyDown (KEY_SPACE))  ;
     else
     {
         parado = 1;
@@ -88,7 +95,7 @@ void Mike_position ()
 
 void draw_Mike ()
 {
-    //DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", position.y, position.x), 200, 400, 20, RED);
+    //DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", position.y, position.x), 100, 800, 20, RED);
     if (parado == 0)DrawTexturePro(Mike_run, frameRec, frameRec2, position, 0, WHITE);
     else DrawTexturePro(Mike_attack, frameRec3, frameRec2, position, 0, WHITE);
 }
