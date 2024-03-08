@@ -1,4 +1,4 @@
-# joguinho
+Joguinho de plataforma simples desenvolvido usando Raylib.
 
 comando para compilar em linux: 
 
