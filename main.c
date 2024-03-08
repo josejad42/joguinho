@@ -1,6 +1,6 @@
 #include "raylib.h"
 #include "raymath.h"
-#include "Mike.h"
+#include "player.h"
 
 int main(void)
 {
@@ -8,23 +8,23 @@ int main(void)
     const int screenHeight = 1000;
 
     InitWindow(screenWidth, screenHeight, "tela em branco");
-    init_Mike ();
+    init_player  ();
 
     // Main game loop
     while (!WindowShouldClose())
     {
-        Mike_position ();
+        player_position ();
 
         BeginDrawing();
 
             ClearBackground(WHITE);
-            draw_Mike ();
+            draw_player ();
 
         EndDrawing();
 
     }
 
-    unload_Mike ();
+    unload_player ();
     CloseWindow();     
    
 
