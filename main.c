@@ -1,13 +1,14 @@
 #include "raylib.h"
 #include "raymath.h"
+#include "player.h"
 
 int main(void)
 {
-    const int screenWidth = 800;
+    const int screenWidth = 850;
     const int screenHeight = 450;
 
     InitWindow(screenWidth, screenHeight, "tela com mapa bugado");
-
+    init_player();
  
     Texture2D clouds01 = LoadTexture("assets/Assets/clouds_01.png"); 
     Texture2D clouds02 = LoadTexture("assets/Assets/clouds_02.png");
@@ -52,13 +53,15 @@ int main(void)
         if (movmidlleground <= -foregound.width*1) movmidlleground = 0;
         if (movmoon <= -moon.width*1) movmoon = 0;
         //if (movtiles <= -tiles.width*2) movtiles = 0;
-
+         
+        player_position();
 
         BeginDrawing();
 
 
             ClearBackground(WHITE);
 
+            draw_player ();
             DrawTextureEx(clouds02, (Vector2){ movcloud02, 20 }, 0.0f, 2.0f, WHITE);
             DrawTextureEx(clouds02, (Vector2){ clouds02.width*2 + movcloud02, 20 }, 0.0f, 2.0f, WHITE);
 
@@ -82,6 +85,8 @@ int main(void)
         EndDrawing();
 
     }
+    
+    unload_player ();
 
     UnloadTexture(clouds01);
     UnloadTexture(clouds02);
