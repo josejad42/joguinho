@@ -61,7 +61,6 @@ int main(void)
 
             ClearBackground(WHITE);
 
-            draw_player ();
             DrawTextureEx(clouds02, (Vector2){ movcloud02, 20 }, 0.0f, 2.0f, WHITE);
             DrawTextureEx(clouds02, (Vector2){ clouds02.width*2 + movcloud02, 20 }, 0.0f, 2.0f, WHITE);
 
@@ -79,7 +78,7 @@ int main(void)
 
             //DrawTextureEx(moon, (Vector2){ movmoon, 20 }, 0.0f, 2.0f, WHITE);
             //DrawTextureEx(moon, (Vector2){ moon.width*2 + movmoon, 20 }, 0.0f, 2.0f, WHITE);
-            
+            draw_player ();
            
 
         EndDrawing();

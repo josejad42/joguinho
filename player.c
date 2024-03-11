@@ -1,10 +1,10 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "player.h"
-#define StandardFSpeed 1
-#define StandardDesloc 1
-#define gravity 600
-#define V0jump 300 
+#define StandardFSpeed 4
+#define StandardDesloc 2
+#define gravity 100
+#define V0jump 50 
 #define Vxjump 0.2
 
 Player player;
@@ -14,9 +14,9 @@ void init_player ()
     player.run = LoadTexture ("assets/player/Run.png");
     player.attack = LoadTexture ("assets/player/Attack 1.png");
     player.jump = LoadTexture ("assets/player/Jump.png");
-    player.position = (Vector2) {-900, -500};
+    player.position = (Vector2) {-400, -250};
     player.frameRec = (Rectangle) {0.0f, 0.0f, player.run.width/7, player.run.height};
-    player.frameRec2 = (Rectangle) {0.0f, 0.0f, 2*player.run.width/7, 2*player.run.height};
+    player.frameRec2 = (Rectangle) {0.0f, 0.0f, player.run.width/7, player.run.height};
     player.frameRec3 = (Rectangle) {0.0f, 0.0f, player.attack.width/5, player.attack.height};
     player.frameRec4 = (Rectangle) {0.0f, 0.0f, player.jump.width/6, player.jump.height};
 
@@ -68,7 +68,7 @@ void player_position ()
         player.pulando = 1;
         player.framesCounter = 0;
         player.currentFrame = 0;
-        player.framesSpeed = 0.8;
+        player.framesSpeed = 3;
     }
     if (IsKeyDown(KEY_A)) 
     {
@@ -115,10 +115,10 @@ void player_position ()
         player.framesCounter++;
         player.parado = 1;
         tempo++;
-        player.position.y = -500 + V0jump*tempo/500 - (gravity * tempo * tempo) / 500000;
-        if (player.position.y <= -501)
+        player.position.y = -250 + V0jump*tempo/500 - (gravity * tempo * tempo) / 500000;
+        if (player.position.y <= -251)
         {
-            player.position.y = -500;
+            player.position.y = -250;
             player.pulando = 0;
             player.framesSpeed = StandardFSpeed;
             player.currentFrame = 0;
@@ -142,8 +142,8 @@ void player_position ()
 
 void draw_player ()
 {
-    DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", player.position.y, player.position.x), 100, 800, 20, RED);
-   // DrawText (TextFormat("entre no else if %d vezes", cnt), 100, 700, 20, RED);
+    //DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", player.position.y, player.position.x), 30, 300, 20, RED);
+   // DrawText (TextFormat("entre no else if %d vezes", cnt), 30, 200, 20, RED);
     if (player.parado == 0 && player.pulando == 0)DrawTexturePro(player.run, player.frameRec, player.frameRec2, player.position, 0, WHITE);
     else if (player.pulando == 0) DrawTexturePro(player.attack, player.frameRec3, player.frameRec2, player.position, 0, WHITE);
     else DrawTexturePro(player.jump, player.frameRec4, player.frameRec2, player.position, 0, WHITE);
