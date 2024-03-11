@@ -1,7 +1,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "player.h"
-#define StandardFSpeed 1
+#define StandardFSpeed 1.1
 #define StandardDesloc 1
 #define gravity 600
 #define V0jump 300 
