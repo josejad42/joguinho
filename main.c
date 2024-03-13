@@ -4,8 +4,8 @@
 
 int main(void)
 {
-    const int screenWidth = 850;
-    const int screenHeight = 450;
+    const int screenWidth = 1700;
+    const int screenHeight = 900;
 
     InitWindow(screenWidth, screenHeight, "tela com mapa bugado");
     init_player();
@@ -60,7 +60,7 @@ int main(void)
 
 
             ClearBackground(WHITE);
-
+            
             DrawTextureEx(clouds02, (Vector2){ movcloud02, 20 }, 0.0f, 2.0f, WHITE);
             DrawTextureEx(clouds02, (Vector2){ clouds02.width*2 + movcloud02, 20 }, 0.0f, 2.0f, WHITE);
 

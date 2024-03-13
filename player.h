@@ -3,9 +3,9 @@
 
 typedef struct
 {
-    Texture2D run, attack, jump;
+    Texture2D texture;
     Vector2 position;
-    Rectangle frameRec, frameRec2, frameRec3, frameRec4;
+    Rectangle frameRec[5];
     int currentFrame, framesCounter, flag, parado, pulando;
     float framesSpeed;
 } Player;
