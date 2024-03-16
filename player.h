@@ -10,9 +10,9 @@ typedef struct
     float framesSpeed;
 } Player;
 
-void init_player ();
-void player_position ();
-void draw_player ();
-void unload_player ();
+void init_player();
+void player_positioning();
+void draw_player();
+void unload_player();
 
 #endif

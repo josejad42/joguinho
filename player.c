@@ -7,8 +7,8 @@
 #define Vxjump 2
 #define qtdFramesHor 20
 #define qtdFramesVer 25
-#define X0 -850
-#define Y0 -450
+#define X0 -450
+#define Y0 -200
 
 Player player; 
 
@@ -31,8 +31,9 @@ void init_player ()
 
 int tempo = 0;
 
-void player_position ()
+void player_positioning ()
 {
+    player.framesCounter++;
     if (player.framesCounter >= (60/player.framesSpeed))
     {
         player.framesCounter = 0;
@@ -73,7 +74,6 @@ void player_position ()
             else 
             {
                 player.position.x += StandardDesloc;
-                player.framesCounter++;
             }
 
             player.flag = 1;
@@ -90,7 +90,6 @@ void player_position ()
             else 
             {
                 player.position.x -= StandardDesloc;
-                player.framesCounter++;
             }
 
             player.flag = 0; 
@@ -100,14 +99,12 @@ void player_position ()
     else if (player.pulando == 0)
     {
         player.parado = 1;
-        player.framesCounter++;
         player.framesSpeed = 7;
     }
     
 
     if (player.pulando == 1)
     {   
-        player.framesCounter++;
         //player.parado = 1;
         tempo++;
         player.position.y = Y0 + V0jump*tempo/500 - (gravity * tempo * tempo) / 500000;
@@ -136,7 +133,7 @@ void player_position ()
 
 void draw_player ()
 {
-    DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", player.position.y, player.position.x), 30, 300, 20, RED);
+    //DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", player.position.y, player.position.x), 30, 300, 20, RED);
    // DrawText (TextFormat("entre no else if %d vezes", cnt), 30, 200, 20, RED);
     if (player.parado == 0 && player.pulando == 0)DrawTexturePro(player.texture, player.frameRec[0], player.frameRec[1], player.position, 0, WHITE);
     else if (player.pulando == 0) DrawTexturePro(player.texture, player.frameRec[2], player.frameRec[1], player.position, 0, WHITE);
