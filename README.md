@@ -2,4 +2,4 @@ Joguinho de plataforma simples desenvolvido usando Raylib.
 
 comando para compilar em linux: 
 
-gcc main.c map.c player.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+gcc main.c map.c player.c enemy.c -lraylib -lGL -lm -lpthread -ldl -lrt -lX11

@@ -2,6 +2,7 @@
 #include "raymath.h"
 #include "player.h"
 #include "map.h"
+#include "enemy.h"
 
 int main(void)
 {
@@ -12,6 +13,7 @@ int main(void)
     
     init_map();
     init_player();
+    init_enemy();
 
     SetTargetFPS(60);  
 
@@ -20,12 +22,14 @@ int main(void)
     {
         map_positioning();
         player_positioning();
+        mov_enemy();
 
         BeginDrawing();
 
             ClearBackground(BLACK);
             draw_map();
             draw_player();
+            draw_enemy();
            
         EndDrawing();
 
@@ -33,6 +37,7 @@ int main(void)
     
     unload_map();
     unload_player();
+    unload_enemy();
    
     CloseWindow();     
    

@@ -6,7 +6,7 @@ typedef struct
     Texture2D texture;
     Vector2 position;
     Rectangle frameRec[5];
-    int currentFrame, framesCounter, flag, parado, pulando;
+    int currentFrame, framesCounter, flag, state;
     float framesSpeed;
 } Player;
 
