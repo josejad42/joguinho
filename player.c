@@ -163,20 +163,21 @@ void player_positioning ()
         player.frameRec[3].width *= -1;
         player.frameRec[4].width *= -1;
     }
+    if (player.flag == 0) player.box_player = (Rectangle) {-1 * player.position.x + player.texture.width/qtdFramesHor, -1 * player.position.y + player.texture.height/qtdFramesVer + 30, player.size.x - 20,  player.size.y};
+    else player.box_player = (Rectangle) {-1 * player.position.x + player.texture.width/qtdFramesHor + 50, -1 * player.position.y + player.texture.height/qtdFramesVer + 30, player.size.x - 20,  player.size.y};
 
 }
 
 void draw_player ()
 {
-    //DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", player.position.y, player.position.x), 30, 300, 20, RED);
+    DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", player.position.y, player.position.x), 30, 300, 20, RED);
     //if (teste == 1) DrawText (TextFormat("entrei no else if"), 30, 200, 20, RED);
     if (player.state == correndo) DrawTexturePro(player.texture, player.frameRec[0], player.frameRec[1], player.position, 0, WHITE);
     else if (player.state == parado) DrawTexturePro(player.texture, player.frameRec[2], player.frameRec[1], player.position, 0, WHITE);
     else if (player.state == atacando) DrawTexturePro(player.texture, player.frameRec[4], player.frameRec[1], player.position, 0, WHITE);
     else DrawTexturePro(player.texture, player.frameRec[3], player.frameRec[1], player.position, 0, WHITE);
-    player.box_player = (Rectangle) {player.position.x-100, player.position.y, player.size.x, player.size.y};
-    DrawRectangleRec(player.box_player,RED);
-    DrawRectangleRec(inimigo.box_enemy,YELLOW);
+    DrawRectangleRec(player.box_player,YELLOW);
+    //DrawRectangleRec(inimigo.box_enemy,YELLOW);
 }
 
 void unload_player ()
