@@ -11,6 +11,8 @@ typedef struct {
     int currentFrame;
     int framesCounter;
     int framesSpeed;
+    Rectangle box_enemy;
+    Vector2 size;
 } Enemy1;
 
 extern Enemy1 inimigo;
