@@ -35,6 +35,12 @@ void mov_enemy(){
         }
 }
 
+void atk_enemy(){
+    Image atk = LoadImage("assets/lobo_atk.png");
+    ImageResize(&atk, 1700, 200);
+    inimigo.img = LoadTextureFromImage(atk);
+}
+
 void draw_enemy(){
     DrawTextureRec(inimigo.img, inimigo.frameRec, inimigo.position, WHITE);
 }

@@ -19,4 +19,5 @@ void init_enemy ();
 void mov_enemy ();
 void draw_enemy ();
 void unload_enemy ();
+void atk_enemy ();
 #endif
