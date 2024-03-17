@@ -6,10 +6,10 @@
 
 int main(void)
 {
-    const int screenWidth = 900;
+    const int screenWidth = 960;
     const int screenHeight = 540;
 
-    InitWindow(screenWidth, screenHeight, "tela com mapa bugado");
+    InitWindow(screenWidth, screenHeight, "Joguinho");
     
     init_map();
     init_player();
