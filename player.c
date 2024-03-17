@@ -34,7 +34,7 @@ void init_player ()
     player.state = parado;            
 }
 
-int tempo = 0;
+int tempo = 0, teste = 0;
 
 void player_positioning ()
 {
@@ -61,10 +61,13 @@ void player_positioning ()
             {
                 player.frameRec[4].x = (float) player.currentFrame * (float) player.texture.width/qtdFramesHor; 
             }
-            else if (IsKeyReleased(KEY_Q))
+            else if (IsKeyUp(KEY_Q))
             {
+                teste = 1;
                 player.state = parado;
+                player.currentFrame = 0;
             }
+
         }
         else
         {
@@ -84,43 +87,47 @@ void player_positioning ()
     if (IsKeyDown(KEY_A)) 
     {
         player.framesSpeed = StandardFrameSpeed;
-        if (IsKeyDown(KEY_D)) player.state = parado;
+        if (IsKeyDown(KEY_D) && player.state != pulando) player.state = parado;
         else 
         {
             if (player.state == pulando) player.position.x += Vxjump; 
             else 
             {
                 player.position.x += StandardDesloc;
+                player.state = correndo;
             }
 
             player.flag = 1;
-            player.state = correndo;
+            //player.state = correndo;
         }
     }
     else if (IsKeyDown(KEY_D)) 
     {
         player.framesSpeed = StandardFrameSpeed;
-        if (IsKeyDown(KEY_A)) player.state = parado;
+        if (IsKeyDown(KEY_A) && player.state != pulando) player.state = parado;
         else 
         {
             if (player.state == pulando) player.position.x -= Vxjump; 
             else 
             {
                 player.position.x -= StandardDesloc;
+                player.state = correndo;
             }
 
             player.flag = 0; 
-            player.state = correndo;
+            //player.state = correndo;
         }
     }
     else if (IsKeyDown(KEY_Q) && player.state != pulando && player.state != atacando)
     {
-        player.framesSpeed = StandardFrameSpeed - 19;
+        player.framesSpeed = 9;
         player.state = atacando;
         player.currentFrame = 0;
+        teste = 0;
     }
-    else if (player.state != pulando)
+    else if (player.state != pulando && player.state != atacando)
     {
+
         player.state = parado;
         player.framesSpeed = 7;
     }
@@ -134,9 +141,9 @@ void player_positioning ()
         if (player.position.y <= Y0 - 1)
         {
             player.position.y = Y0;
-            player.state = parado;
             player.currentFrame = 0;
             tempo = 0;
+            if (!IsKeyDown(KEY_SPACE)) player.state = parado;
         }
     }
 
@@ -159,7 +166,7 @@ void player_positioning ()
 void draw_player ()
 {
     //DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", player.position.y, player.position.x), 30, 300, 20, RED);
-   // DrawText (TextFormat("entre no else if %d vezes", cnt), 30, 200, 20, RED);
+    //if (teste == 1) DrawText (TextFormat("entrei no else if"), 30, 200, 20, RED);
     if (player.state == correndo) DrawTexturePro(player.texture, player.frameRec[0], player.frameRec[1], player.position, 0, WHITE);
     else if (player.state == parado) DrawTexturePro(player.texture, player.frameRec[2], player.frameRec[1], player.position, 0, WHITE);
     else if (player.state == atacando) DrawTexturePro(player.texture, player.frameRec[4], player.frameRec[1], player.position, 0, WHITE);
