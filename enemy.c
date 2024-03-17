@@ -6,9 +6,9 @@
 Enemy1 inimigo;
 
 void init_enemy(){
-    inimigo.position = (Vector2) {450, 200};
+    inimigo.position = (Vector2) {1000, 295};
     Image enemy_image = LoadImage("assets/lobocorrendo.png");
-    ImageResize(&enemy_image, 1000, 75);
+    ImageResize(&enemy_image, 1700, 200);
     inimigo.img = LoadTextureFromImage(enemy_image);
  
     inimigo.currentFrame = 0;
