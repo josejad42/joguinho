@@ -8,7 +8,11 @@ typedef struct
     Rectangle frameRec[5];
     int currentFrame, framesCounter, flag, state;
     float framesSpeed;
+    Vector2 size;
+    Rectangle box_player;
 } Player;
+
+extern Player player;
 
 void init_player();
 void player_positioning();

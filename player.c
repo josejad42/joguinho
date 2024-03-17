@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include "player.h"
+#include "enemy.h"
 #define StandardFrameSpeed 15
 #define StandardDesloc 5
 #define gravity 21000
@@ -32,6 +33,7 @@ void init_player ()
     player.flag = 0; //flag do sentido do player (0 = direita; 1 = esquerda)
     player.framesSpeed = StandardFrameSpeed;
     player.state = parado;            
+    player.size = (Vector2) {100, 150};
 }
 
 int tempo = 0, teste = 0;
@@ -161,6 +163,7 @@ void player_positioning ()
         player.frameRec[3].width *= -1;
         player.frameRec[4].width *= -1;
     }
+
 }
 
 void draw_player ()
@@ -171,6 +174,9 @@ void draw_player ()
     else if (player.state == parado) DrawTexturePro(player.texture, player.frameRec[2], player.frameRec[1], player.position, 0, WHITE);
     else if (player.state == atacando) DrawTexturePro(player.texture, player.frameRec[4], player.frameRec[1], player.position, 0, WHITE);
     else DrawTexturePro(player.texture, player.frameRec[3], player.frameRec[1], player.position, 0, WHITE);
+    player.box_player = (Rectangle) {player.position.x-100, player.position.y, player.size.x, player.size.y};
+    DrawRectangleRec(player.box_player,RED);
+    DrawRectangleRec(inimigo.box_enemy,YELLOW);
 }
 
 void unload_player ()
