@@ -17,8 +17,6 @@ void init_enemy(){
     inimigo.framesSpeed = 10;
     inimigo.frameRec = (Rectangle) {0.0f, 0.0f, (float)inimigo.img.width/11, (float)inimigo.img.height };
     inimigo.img.width*=-1;
-
-
 }
 
 void mov_enemy(){
@@ -33,25 +31,36 @@ void mov_enemy(){
         }
 
         inimigo.position.x -= 2;
-        if (inimigo.position.x <= -20){ 
+        if (inimigo.position.x <= -150){ 
             inimigo.position.x = 1000;
         }
         inimigo.box_enemy = (Rectangle) {inimigo.position.x+30, inimigo.position.y+50, inimigo.size.x, inimigo.size.y };
+        inimigo.colisao = CheckCollisionRecs(inimigo.box_enemy, player.box_player);
         
 }
 
 void atk_enemy(){
-    Image atk = LoadImage("assets/lobo_atk.png");
-    ImageResize(&atk, 1700, 200);
-    inimigo.img = LoadTextureFromImage(atk);
+    if(inimigo.colisao){
+    
+        Image atk = LoadImage("assets/lobo_atk.png");
+        ImageResize(&atk, 1700, 200);
+        inimigo.img = LoadTextureFromImage(atk);
+        inimigo.img.width*=-1;
+    } else{
+        Image enemy_image = LoadImage("assets/lobocorrendo.png");
+        ImageResize(&enemy_image, 1700, 200);
+        inimigo.img = LoadTextureFromImage(enemy_image);
+        inimigo.img.width*=-1;
+
+    }
     
 }
 
 void draw_enemy(){
     DrawTextureRec(inimigo.img, inimigo.frameRec, inimigo.position, WHITE);
-    DrawRectangleRec(inimigo.box_enemy,RED);
 }
 
 void unload_enemy(){
     UnloadTexture(inimigo.img);
+    
 }
