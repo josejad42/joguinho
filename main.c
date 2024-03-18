@@ -30,6 +30,7 @@ int main(void)
             draw_map();
             draw_player();
             draw_enemy();
+            atk_enemy();
            
         EndDrawing();
 

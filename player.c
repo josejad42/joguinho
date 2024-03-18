@@ -172,11 +172,18 @@ void draw_player ()
 {
     DrawText (TextFormat("PosY: %03.0f\nPosX: %03.0f", player.position.y, player.position.x), 30, 300, 20, RED);
     //if (teste == 1) DrawText (TextFormat("entrei no else if"), 30, 200, 20, RED);
-    if (player.state == correndo) DrawTexturePro(player.texture, player.frameRec[0], player.frameRec[1], player.position, 0, WHITE);
-    else if (player.state == parado) DrawTexturePro(player.texture, player.frameRec[2], player.frameRec[1], player.position, 0, WHITE);
-    else if (player.state == atacando) DrawTexturePro(player.texture, player.frameRec[4], player.frameRec[1], player.position, 0, WHITE);
-    else DrawTexturePro(player.texture, player.frameRec[3], player.frameRec[1], player.position, 0, WHITE);
-    DrawRectangleRec(player.box_player,YELLOW);
+    if(inimigo.colisao){
+        if (player.state == correndo) DrawTexturePro(player.texture, player.frameRec[0], player.frameRec[1], player.position, 0, RED);
+        else if (player.state == parado) DrawTexturePro(player.texture, player.frameRec[2], player.frameRec[1], player.position, 0, RED);
+        else if (player.state == atacando) DrawTexturePro(player.texture, player.frameRec[4], player.frameRec[1], player.position, 0, RED);
+        else DrawTexturePro(player.texture, player.frameRec[3], player.frameRec[1], player.position, 0, RED);
+    } else{
+        if (player.state == correndo) DrawTexturePro(player.texture, player.frameRec[0], player.frameRec[1], player.position, 0, WHITE);
+        else if (player.state == parado) DrawTexturePro(player.texture, player.frameRec[2], player.frameRec[1], player.position, 0, WHITE);
+        else if (player.state == atacando) DrawTexturePro(player.texture, player.frameRec[4], player.frameRec[1], player.position, 0, WHITE);
+        else DrawTexturePro(player.texture, player.frameRec[3], player.frameRec[1], player.position, 0, WHITE);
+    }
+    //DrawRectangleRec(player.box_player,YELLOW);
     //DrawRectangleRec(inimigo.box_enemy,YELLOW);
 }
 

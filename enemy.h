@@ -13,6 +13,7 @@ typedef struct {
     int framesSpeed;
     Rectangle box_enemy;
     Vector2 size;
+    bool colisao;
 } Enemy1;
 
 extern Enemy1 inimigo;
